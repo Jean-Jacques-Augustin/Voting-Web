@@ -1,0 +1,15 @@
+
+.top-panel {
+    display: flex;
+    justify-content: space-between;
+}
+
+.button-right {
+    margin-right: 2vh;
+    text-transform: none;
+}
+
+.add_center {
+    display: flex;
+    justify-content: center;
+}
