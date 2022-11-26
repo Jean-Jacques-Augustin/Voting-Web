@@ -4,6 +4,7 @@ import {useState} from "react";
 import "../../styles/admin.css"
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 import {Link} from "react-router-dom";
+import axios from "axios";
 
 const baseUrl = "http://localhost:8080/region";
 
@@ -13,6 +14,14 @@ export default function AddRegion() {
     const [description, setDescription] = useState("");
     const [nomError, setNomError] = useState(false);
     const [descriptionError, setDescriptionError] = useState(false);
+
+    const createRegion = () => {
+        axios.post(baseUrl, {
+            name: nom,
+            description: description
+        }).then(r => console.log(r));
+    };
+
 
 
     return (
@@ -48,6 +57,7 @@ export default function AddRegion() {
                                 sx={{textTransform: "none"}}
                                 fullWidth
                                 size={"large"}
+                                onClick={createRegion}
                         >
                             Enregistrer
                         </Button>

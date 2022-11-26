@@ -1,15 +1,14 @@
-
 .top-panel {
-    display: flex;
-    justify-content: space-between;
+     display: flex;
+     justify-content: space-between;
 }
 
 .button-right {
-    margin-right: 2vh;
-    text-transform: none;
+     margin-right: 2vh;
+     text-transform: none;
 }
 
 .add_center {
-    display: flex;
-    justify-content: center;
+     display: flex;
+     justify-content: center;
 }

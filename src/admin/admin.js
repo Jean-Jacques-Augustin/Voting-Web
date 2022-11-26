@@ -14,7 +14,14 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-
+import {Route, Routes} from "react-router-dom";
+import Region from "./region/region";
+import Bv from "./bVote/bv";
+import Commune from "./commune/commune";
+import AddRegion from "./region/addRegion";
+import AddCommune from "./commune/addCommune";
+import AddBv from "./bVote/addBv";
+import Candidat from "./candidat/candidat";
 
 /**
  *
@@ -24,14 +31,11 @@ import FlagIcon from '@mui/icons-material/Flag';
 import RoomIcon from '@mui/icons-material/Room';
 import MapsHomeWorkIcon from '@mui/icons-material/MapsHomeWork';
 import {CloseOutlined} from "@mui/icons-material";
-import {BrowserRouter, Route, Routes} from "react-router-dom";
-import Region from "./region/region";
-import Bv from "./bVote/bv";
-import Commune from "./commune/commune";
-import AddRegion from "./region/addRegion";
-import AddCommune from "./commune/addCommune";
-import AddBv from "./bVote/addBv";
-import Candidat from "./candidat/candidat";
+import PermContactCalendarIcon from '@mui/icons-material/PermContactCalendar';
+import SettingsIcon from '@mui/icons-material/Settings';
+import Cin from "./cin/cin";
+import AddCin from "./cin/addCin";
+import SwitchTheme from "../components/switchTheme";
 
 
 /**
@@ -61,9 +65,9 @@ const ListElements = [
         path: "/candidat"
     },
     {
-        name: "Région",
-        icon: <FlagIcon/>,
-        path: "/region"
+        name: "Identité",
+        icon: <PermContactCalendarIcon/>,
+        path: "/cin"
 
     },
     {
@@ -157,20 +161,31 @@ export default function MiniDrawer() {
         <Box sx={{display: 'flex'}}>
             <CssBaseline/>
             <AppBar position="fixed">
-                <Toolbar>
-                    <IconButton
-                        color="inherit"
-                        aria-label="open drawer"
-                        onClick={handleDrawerOpen}
-                        edge="start"
-                        sx={{marginRight: 5}}
-                    >
-                        {open ? <CloseOutlined/> : <MenuIcon/>}
-                        {/*<MenuIcon/>*/}
-                    </IconButton>
-                    <Typography variant="h6" noWrap component="div">
-                        Administration de la plateforme
-                    </Typography>
+                <Toolbar style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                }}>
+                    <div style={{
+                        display: "flex",
+                        justifyContent: "flex-start",
+                        alignItems: "center",
+                    }} >
+                        <IconButton
+                            color="inherit"
+                            aria-label="open drawer"
+                            onClick={handleDrawerOpen}
+                            edge="start"
+                            sx={{marginRight: 5}}
+                        >
+                            {open ? <CloseOutlined/> : <MenuIcon/>}
+                            {/*<MenuIcon/>*/}
+                        </IconButton>
+                        <Typography variant="h6" noWrap component="div">
+                            Administration de la plateforme
+                        </Typography>
+                    </div>
+                    <SwitchTheme/>
                 </Toolbar>
             </AppBar>
             <Drawer variant="permanent" open={open}>
@@ -200,30 +215,35 @@ export default function MiniDrawer() {
                             </ListItemButton>
                         </ListItem>
                     ))}
+                    <IconButton>
+                        <SettingsIcon/>
+                    </IconButton>
                 </List>
             </Drawer>
             <Box component="main" sx={{flexGrow: 1, p: 3}}>
                 <DrawerHeader/>
                 <div className="content">
-                    <BrowserRouter>
-                        <Routes>
-                            {/**
-                             * Routes basiques
-                             */}
-                            <Route path="/" element={<Region/>}/>
-                            <Route path="/bv" element={<Bv/>}/>
-                            <Route path="/commune" element={<Commune/>}/>
-                            <Route path="/region" element={<Region/>}/>
 
-                            {/**
-                             * Routes ajout
-                             */}
-                            <Route path="/addRegion" element={<AddRegion/>}/>
-                            <Route path="/addBv" element={<AddBv/>}/>
-                            <Route path="/addCommune" element={<AddCommune/>}/>
-                            <Route path={'/candidat'} element={<Candidat/>}/>
-                        </Routes>
-                    </BrowserRouter>
+                    <Routes>
+                        {/**
+                         * Routes basiques
+                         */}
+                        <Route path="/" element={<Region/>}/>
+                        <Route path="/bv" element={<Bv/>}/>
+                        <Route path="/commune" element={<Commune/>}/>
+                        <Route path="/region" element={<Region/>}/>
+                        <Route path="/candidat" element={<Candidat/>}/>
+                        <Route path="/cin" element={<Cin/>}/>
+
+                        {/**
+                         * Routes ajout
+                         */}
+                        <Route path="/addRegion" element={<AddRegion/>}/>
+                        <Route path="/addBv" element={<AddBv/>}/>
+                        <Route path="/addCommune" element={<AddCommune/>}/>
+                        <Route path={"/addCin"} element={<AddCin/>}/>
+                    </Routes>
+
                 </div>
             </Box>
         </Box>

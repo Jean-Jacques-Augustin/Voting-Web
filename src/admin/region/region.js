@@ -1,4 +1,5 @@
 import * as React from 'react';
+import {useEffect} from 'react';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -12,6 +13,7 @@ import "../../styles/admin.css"
 import PrintIcon from '@mui/icons-material/Print';
 import AddIcon from '@mui/icons-material/Add';
 import {Link} from "react-router-dom";
+import axios from "axios";
 
 
 const regionData = [
@@ -41,9 +43,20 @@ const regionData = [
         description: "Fianarantsoa"
     }
 ]
-
+const baseUrl = "http://localhost:8080/region";
 
 export default function Region() {
+
+    const [region, setRegion] = React.useState([]);
+
+    useEffect(() => {
+        axios.get(baseUrl).then((response) => {
+            setRegion(response.data);
+        });
+    }, []);
+
+    console.log(region);
+
     return (
         <Paper sx={{p: 2}}>
             <div className={"top-panel"}>
@@ -71,22 +84,19 @@ export default function Region() {
                     </TableHead>
                     <TableBody>
 
-                        {
-                            regionData.map((item, key) => (
-                                <TableRow
-                                    key={item.id}
-                                    sx={{'&:last-child td, &:last-child th': {border: 0}}}
-                                >
-                                    <TableCell component="th" scope="row">
-                                        {item.id}
-                                    </TableCell>
-                                    <TableCell>{item.nom}</TableCell>
-                                    <TableCell>{item.description}</TableCell>
-                                </TableRow>
-                            ))
+                        {region.map((item, key) => (
+                            <TableRow
+                                key={item.id}
+                                sx={{'&:last-child td, &:last-child th': {border: 0}}}
+                            >
+                                <TableCell component="th" scope="row">
+                                    {item.id}
+                                </TableCell>
+                                <TableCell>{item.name}</TableCell>
+                                <TableCell>{item.description}</TableCell>
+                            </TableRow>
+                        ))
                         }
-
-
                     </TableBody>
                 </Table>
             </TableContainer>

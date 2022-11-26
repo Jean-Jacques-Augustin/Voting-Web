@@ -1,0 +1,11 @@
+.drag_drop {
+    border: 2px solid whitesmoke;
+    height: 300px;
+    width: 300px;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    margin: auto;
+}
