@@ -1,4 +1,5 @@
 import * as React from 'react';
+import {useEffect, useState} from 'react';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -12,43 +13,20 @@ import "../../styles/admin.css"
 import PrintIcon from '@mui/icons-material/Print';
 import AddIcon from '@mui/icons-material/Add';
 import {Link} from "react-router-dom";
-
-
-const regionData = [
-    {
-        id: 1,
-        nom: "Haute Matsiatra",
-        code: "Alaotra",
-        region: "Fianarantsoa"
-    },
-    {
-        id: 2,
-        nom: "Alaotra",
-        code: "Alaotra",
-        region: "Fianarantsoa"
-    },
-    {
-        id: 3,
-        nom: "Vakinakaratra",
-        code: "Alaotra",
-        region: "Fianarantsoa"
-    },
-    {
-        id: 4,
-        nom: "Itasy",
-        code: "Alaotra",
-        region: "Fianarantsoa"
-    },
-    {
-        id: 5,
-        nom: "Antsimo antsinanana",
-        code: "Alaotra",
-        region: "Fianarantsoa"
-    }
-]
+import axios from "axios";
+import {baseUrl} from "../../constantes";
 
 
 export default function Commune() {
+
+    const [comData, setComData] = useState([]);
+
+    useEffect(() => {
+        axios.get(baseUrl + "commune").then((response) => {
+            setComData(response.data);
+        });
+    }, []);
+
     return (
         <Paper sx={{p: 2}}>
             <div className={"top-panel"}>
@@ -78,7 +56,7 @@ export default function Commune() {
                     <TableBody>
 
                         {
-                            regionData.map((item, key) => (
+                            comData.map((item, key) => (
                                 <TableRow
                                     key={item.id}
                                     sx={{'&:last-child td, &:last-child th': {border: 0}}}

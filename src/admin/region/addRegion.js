@@ -8,12 +8,16 @@ import axios from "axios";
 
 const baseUrl = "http://localhost:8080/region";
 
+/**
+ *
+ * @returns {JSX.Element}
+ * @constructor
+ * @TODO : Efa vita tsara
+ */
 
 export default function AddRegion() {
     const [nom, setNom] = useState("");
     const [description, setDescription] = useState("");
-    const [nomError, setNomError] = useState(false);
-    const [descriptionError, setDescriptionError] = useState(false);
 
     const createRegion = () => {
         axios.post(baseUrl, {
@@ -21,7 +25,6 @@ export default function AddRegion() {
             description: description
         }).then(r => console.log(r));
     };
-
 
 
     return (

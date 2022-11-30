@@ -12,7 +12,7 @@ export const CustomTextField = (props) => {
     return (
         <TextField
             type={props.type}
-            size={"medium"}
+            size={"small"}
             value={props.value}
             label={props.label}
             variant="outlined"
@@ -92,7 +92,7 @@ export const CustomDatePicker = (props) => {
                 label={props.label}
                 value={props.value}
                 onChange={props.onChange}
-                renderInput={(params) => <TextField fullWidth {...params} />}
+                renderInput={(params) => <TextField size={"small"} fullWidth {...params} />}
             />
         </LocalizationProvider>
     );

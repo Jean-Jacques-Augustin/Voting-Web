@@ -19,108 +19,25 @@ import {Button, Container, Grid} from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import {Link} from "react-router-dom";
 import * as React from "react";
+import {useEffect} from "react";
 import PrintIcon from "@mui/icons-material/Print";
-
-const CinData = [
-    {
-        nom: "BENKHALIFA",
-        prenom: "Mohamed",
-        sexe: "Homme",
-        lieu_naissance: "Tanger",
-        adresse: "Tanger",
-        profession: "Etudiant",
-        pere: "BENKHALIFA",
-        mere: "BENKHALIFA",
-        photo: "https://www.lematin.ma/wp-content/uploads/2021/07/20210720_1610_1.jpg",
-        num_cin: "123456789",
-        date_naissance: "01/01/2000",
-        date_delivrance: "01/01/2021",
-        lieu_delivrance: "Tanger"
-    },
-    {
-        nom: "BENKHALIFA",
-        prenom: "Mohamed",
-        sexe: "Homme",
-        lieu_naissance: "Tanger",
-        adresse: "Tanger",
-        profession: "Etudiant",
-        pere: "BENKHALIFA",
-        mere: "BENKHALIFA",
-        photo: "https://www.lematin.ma/wp-content/uploads/2021/07/20210720_1610_1.jpg",
-        num_cin: "123456789",
-        date_naissance: "01/01/2000",
-        date_delivrance: "01/01/2021",
-        lieu_delivrance: "Tanger"
-    },
-
-    {
-        nom: "BENKHALIFA",
-        prenom: "Mohamed",
-        sexe: "Homme",
-        lieu_naissance: "Tanger",
-        adresse: "Tanger",
-        profession: "Etudiant",
-        pere: "BENKHALIFA",
-        mere: "BENKHALIFA",
-        photo: "https://www.lematin.ma/wp-content/uploads/2021/07/20210720_1610_1.jpg",
-        num_cin: "123456789",
-        date_naissance: "01/01/2000",
-        date_delivrance: "01/01/2021",
-        lieu_delivrance: "Tanger"
-    }
-    ,
-    {
-        nom: "BENKHALIFA",
-        prenom: "Mohamed",
-        sexe: "Homme",
-        lieu_naissance: "Tanger",
-        adresse: "Tanger",
-        profession: "Etudiant",
-        pere: "BENKHALIFA",
-        mere: "BENKHALIFA",
-        photo: "https://www.lematin.ma/wp-content/uploads/2021/07/20210720_1610_1.jpg",
-        num_cin: "123456789",
-        date_naissance: "01/01/2000",
-        date_delivrance: "01/01/2021",
-        lieu_delivrance: "Tanger"
-    },
-
-    {
-        nom: "BENKHALIFA",
-        prenom: "Mohamed",
-        sexe: "Homme",
-        lieu_naissance: "Tanger",
-        adresse: "Tanger",
-        profession: "Etudiant",
-        pere: "BENKHALIFA",
-        mere: "BENKHALIFA",
-        photo: "https://www.lematin.ma/wp-content/uploads/2021/07/20210720_1610_1.jpg",
-        num_cin: "123456789",
-        date_naissance: "01/01/2000",
-        date_delivrance: "01/01/2021",
-        lieu_delivrance: "Tanger"
-    },
-
-    {
-        nom: "BENKHALIFA",
-        prenom: "Mohamed",
-        sexe: "Homme",
-        lieu_naissance: "Tanger",
-        adresse: "Tanger",
-        profession: "Etudiant",
-        pere: "BENKHALIFA",
-        mere: "BENKHALIFA",
-        photo: "https://www.lematin.ma/wp-content/uploads/2021/07/20210720_1610_1.jpg",
-        num_cin: "123456789",
-        date_naissance: "01/01/2000",
-        date_delivrance: "01/01/2021",
-        lieu_delivrance: "Tanger"
-    }
-
-]
+import axios from "axios";
+import {baseUrl} from "../../constantes";
 
 
 export default function Cin() {
+
+    // get data from api
+
+    const [data, setData] = React.useState([]);
+
+
+    useEffect(() => {
+
+        axios.get(baseUrl).then((response) => {
+            setData(response.data);
+        });
+    }, []);
 
     return (
         <Container className="cin">
@@ -149,7 +66,7 @@ export default function Cin() {
                 </Grid>
             </Grid>
             {
-                CinData.map((cin, index) => (
+                data.map((cin, index) => (
                     <CinBox
                         key={index}
                         name={cin.nom}
